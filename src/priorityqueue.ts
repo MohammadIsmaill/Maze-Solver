@@ -50,14 +50,6 @@ export class priorityqueue{
     
 }
 
-let pq:priorityqueue = new priorityqueue();
-pq.enqueue(3,0);
-pq.enqueue(5,0);
-pq.enqueue(6,1);
-pq.display();
 
-let a = pq.dequeue();
-console.log(a);
-pq.display();
 
 

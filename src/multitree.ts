@@ -54,7 +54,6 @@ export class multitree{
     }
     insertNode(data:any,parentId:number){
         let n = this.search_id(parentId)
-        // console.log(n);
         if(n != null){
             n.insertChild(data, ++this.nbnodes,n);
             return true;
@@ -67,9 +66,7 @@ export class multitree{
     displayUtil(node:any,nodep:any){
         if(node != null){
             if(nodep!=null){
-                console.log("Node data: " + nodep.getData()+ " Node id: " + node.id + " Node parent: " + node.parent)
             }else{
-                console.log("N: " + node.id + ": " + node.getData())
             }
 
             for(let i = 0 ; i < node.children.length ; i++){
@@ -81,7 +78,6 @@ export class multitree{
         if(node != null){
             this.display_solution(node.getParent())
             this.solution.push(node.getParent())
-            console.log("NODE: ",node.getData())
         }
     }
 }
@@ -171,7 +167,6 @@ let tree:multitree = new multitree(t1);
 let tree2:multitree =new multitree(t2)
 
 if(tree2.search_data(t1)){
-    console.log("found");
 }
 
 

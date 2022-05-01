@@ -83,8 +83,8 @@ export class Game{
 
     movePlayer(event:any){
         // event.preventDefault();
-        console.log(event.keyCode);
 
+        
         switch(event.keyCode){
             case 37:
                 this.moveLeft();

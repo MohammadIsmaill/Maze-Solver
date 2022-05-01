@@ -98,11 +98,9 @@ export class searchingTechniques{
         let nodeTable:table = node.getData();
     
         if(nodeTable.isEqual(goal)){
-            console.log("Start");
             this.treeAI.display_solution(node);
             this.treeAI.solution.push(node);
             this.found = true;
-            console.log("end");
             return;
         }else{
             let tableUP:table = this.apply("UP",nodeTable);
@@ -114,23 +112,19 @@ export class searchingTechniques{
             
     
             if(tableUP != null){
-                // console.log("table up: ",tableUP);
                 this.treeAI.insertNode(tableUP,node.id);
                 this.IDSUtil(this.treeAI.search_data(tableUP),goal,c);
             }
             if(tableDOWN != null  ){
-                // console.log("table down: ",tableDOWN);
                 this.treeAI.insertNode(tableDOWN,node.id);
                 this.IDSUtil(this.treeAI.search_data(tableDOWN),goal,c);
             }
             if(tableLEFT != null){
-                // console.log("table left: ",tableLEFT);
                 this.treeAI.insertNode(tableLEFT,node.id);
                 this.IDSUtil(this.treeAI.search_data(tableLEFT),goal,c);
             }
             
             if(tableRIGHT != null ){
-                // console.log("table right: ",tableRIGHT);
                 this.treeAI.insertNode(tableRIGHT,node.id);
                 this.IDSUtil(this.treeAI.search_data(tableRIGHT),goal,c);
             }
@@ -142,16 +136,12 @@ export class searchingTechniques{
         queue.push(tree.root);
         while(!(queue.length == 0)){
             let node:multinode = queue.shift()
-            console.log(node)
             let nodeTable:table = node.getData();
-            console.log(nodeTable);
     
     
             if(nodeTable.isEqual(goal)){
-                console.log("Start");
                 tree.display_solution(node);
                 tree.solution.push(node);
-                console.log("end");
                 break;
                 
             }
@@ -162,22 +152,18 @@ export class searchingTechniques{
                 let tableRIGHT:table = this.apply("RIGHT",nodeTable);
     
                 if(tableUP != null){
-                    // console.log("table up: ",tableUP);
                     tree.insertNode(tableUP,node.id);
                     queue.push(tree.search_data(tableUP));
                 }
                 if(tableDOWN != null){
-                    // console.log("table down: ",tableDOWN);
                     tree.insertNode(tableDOWN,node.id);
                     queue.push(tree.search_data(tableDOWN));
                 }
                 if(tableLEFT != null){
-                    // console.log("table left: ",tableLEFT);
                     tree.insertNode(tableLEFT,node.id);
                     queue.push(tree.search_data(tableLEFT));
                 }
                 if(tableRIGHT != null){
-                    // console.log("table right: ",tableRIGHT);
                     tree.insertNode(tableRIGHT,node.id);
                     queue.push(tree.search_data(tableRIGHT));
                 }
@@ -200,12 +186,9 @@ export class searchingTechniques{
         let nodeTable:table = node.getData();
 
         if(nodeTable.isEqual(goal)){
-            console.log("Start");
-            console.log("GOAL FOUND: ",node);
             this.treeAI.display_solution(node);
             this.treeAI.solution.push(node);
             this.found = true;
-            console.log("end");
             return;
         }
         else{
@@ -217,29 +200,24 @@ export class searchingTechniques{
     
     
             if(tableUP != null){
-                // console.log("table up: ",tableUP);
                 this.treeAI.insertNode(tableUP,node.id);
                 this.DFSUtil(this.treeAI.search_data(tableUP),goal,c);
             }
             if(tableDOWN != null  ){
-                // console.log("table down: ",tableDOWN);
                 this.treeAI.insertNode(tableDOWN,node.id);
                 this.DFSUtil(this.treeAI.search_data(tableDOWN),goal,c);
             }
             if(tableLEFT != null){
-                // console.log("table left: ",tableLEFT);
                 this.treeAI.insertNode(tableLEFT,node.id);
                 this.DFSUtil(this.treeAI.search_data(tableLEFT),goal,c);
             }
             if(tableRIGHT != null ){
-                // console.log("table right: ",tableRIGHT);
                 this.treeAI.insertNode(tableRIGHT,node.id);
                 this.DFSUtil(this.treeAI.search_data(tableRIGHT),goal,c);
             }  
         }
     }
     hN(cell1:any,cell2:any){
-        console.log("HN: " + cell1.x + " " + cell2.x + " " + cell1.y + " " + cell2.y);
         return Math.abs(cell1.x - cell2.x) + Math.abs(cell1.y - cell2.y);
     }
     gN(cell1:any,cell2:any){
@@ -278,14 +256,11 @@ export class searchingTechniques{
         while(!pq.isEmpty()){
             i++;
             let node:multinode = pq.dequeue();
-            console.log(node)
             let t:table = node.getData();
 
             if(t.isEqual(goal)){
-                console.log("Start");
                 tree.display_solution(node);
                 tree.solution.push(node);
-                console.log("end");
                 break;
             }else
             {
@@ -294,42 +269,24 @@ export class searchingTechniques{
                 let tableLEFT:table =  this.apply("LEFT",t);
                 let tableRIGHT:table = this.apply("RIGHT",t);
                 if(tableUP != null){
-                    // console.log("TABLE UP PLAYER: " + tableUP.player.x,tableUP.player.y);
-                    console.log("table up: ",tableUP);
                     let pr = this.gN(initialState,tableUP.player) + this.hN(tableUP.player,tableUP.goal);
-                    console.log("HN: " + this.hN(tableUP.player,tableUP.goal))
-                    console.log("GN:" + this.gN(initialState,tableUP.player))
-                    console.log("PR: " + pr);
                     tree.insertNode(tableUP,node.id);
                     pq.enqueue(tree.search_data(tableUP),pr);
                     
                 }
                 if(tableDOWN != null  ){
-                    // console.log("TABLE UP PLAYER: " + tableDOWN.player.x,tableDOWN.player.y);
-                    console.log("table down: ",tableDOWN);
                     let pr = this.gN(initialState,tableDOWN.player) + this.hN(tableDOWN.player,tableDOWN.goal);
-                    console.log("HN: " + this.hN(tableDOWN.player,tableDOWN.goal))
-                    console.log("GN:" + this.gN(initialState,tableDOWN.player))
 
-                    console.log("PR: ",pr);
                     tree.insertNode(tableDOWN,node.id);
                     pq.enqueue(tree.search_data(tableDOWN),pr);
                 }
                 if(tableLEFT != null){
-                    console.log("table left: ",tableLEFT);
                     let pr = this.gN(initialState,tableLEFT.player) + this.hN(tableLEFT.player,tableLEFT.goal);
-                    console.log("PR: " ,pr);
-                    console.log("HN: " + this.hN(tableLEFT.player,tableLEFT.goal))
-                    console.log("GN:" + this.gN(initialState,tableLEFT.player))
                     tree.insertNode(tableLEFT,node.id);
                     pq.enqueue(tree.search_data(tableLEFT),pr);
                 }
                 if(tableRIGHT != null ){
-                    console.log("table right: ",tableRIGHT);
                     let pr = this.gN(initialState,tableRIGHT.player) + this.hN(tableRIGHT.player,tableRIGHT.goal);
-                    console.log("GN:" + this.gN(initialState,tableRIGHT.player))
-                    console.log("HN: " + this.hN(tableRIGHT.player,tableRIGHT.goal))
-                    console.log("PR: ",pr);
                     tree.insertNode(tableRIGHT,node.id);
                     pq.enqueue(tree.search_data(tableRIGHT),pr);
                 }  
@@ -347,7 +304,6 @@ export class searchingTechniques{
         let arr2:table[] = [];
         queue1.push(tree1.root);
         queue2.push(tree2.root);
-        // console.log(tree2.root.data);
         let i = 0;
         while((!(queue1.length == 0) || !(queue2.length == 0)) && i < 10000){
             i++;
@@ -361,35 +317,24 @@ export class searchingTechniques{
 
             // if(i == 99){
             //     tree1.display_solution(node1);
-            //     console.log("***************************");
             //     tree2.display_solution(node2)
             // }
 
             
 
             if(tree1.search_data(nodeTable1) && tree2.search_data(nodeTable1)){
-                console.log("Start 1");
                 tree1.display_solution(node1);
                 tree1.solution.push(node1);
-                console.log("end 1");
 
-                console.log("intersected at node: ",nodeTable1);
-                console.log("start 2");
                 tree2.display_solution(node1);
                 tree2.solution.push(node1);
-                console.log("end 2");
                 break;
             }
             else if(tree1.search_data(nodeTable2) && tree2.search_data(nodeTable2)){
-                console.log("Start 1");
                 tree1.display_solution(node2);
                 tree1.solution.push(node2);
-                console.log("end 1");
-                console.log("intersected at node: ",node2);
-                console.log("start 2");
                 tree2.display_solution(node2);
                 tree2.solution.push(node2);
-                console.log("end 2");
             }else{
                 let tableUP:table = this.apply("UP",nodeTable1);
                 let tableDOWN:table = this.apply("DOWN",nodeTable1);
@@ -397,22 +342,18 @@ export class searchingTechniques{
                 let tableRIGHT:table = this.apply("RIGHT",nodeTable1);
     
                 if(tableUP != null){
-                    // console.log("table up: ",tableUP);
                     tree1.insertNode(tableUP,node1.id);
                     queue1.push(tree1.search_data(tableUP));
                 }
                 if(tableDOWN != null){
-                    // console.log("table down: ",tableDOWN);
                     tree1.insertNode(tableDOWN,node1.id);
                     queue1.push(tree1.search_data(tableDOWN));
                 }
                 if(tableLEFT != null){
-                    // console.log("table left: ",tableLEFT);
                     tree1.insertNode(tableLEFT,node1.id);
                     queue1.push(tree1.search_data(tableLEFT));
                 }
                 if(tableRIGHT != null){
-                    // console.log("table right: ",tableRIGHT);
                     tree1.insertNode(tableRIGHT,node1.id);
                     queue1.push(tree1.search_data(tableRIGHT));
                 }
@@ -423,22 +364,18 @@ export class searchingTechniques{
                 let tableRIGHT2:table = this.apply("RIGHT",nodeTable2);
     
                 if(tableUP2 != null){
-                    // console.log("table up: ",tableUP);
                     tree2.insertNode(tableUP2,node2.id);
                     queue2.push(tree2.search_data(tableUP2));
                 }
                 if(tableDOWN2 != null){
-                    // console.log("table down: ",tableDOWN);
                     tree2.insertNode(tableDOWN2,node2.id);
                     queue2.push(tree2.search_data(tableDOWN2));
                 }
                 if(tableLEFT2 != null){
-                    // console.log("table left: ",tableLEFT);
                     tree2.insertNode(tableLEFT2,node2.id);
                     queue2.push(tree2.search_data(tableLEFT2));
                 }
                 if(tableRIGHT2 != null){
-                    // console.log("table right: ",tableRIGHT);
                     tree2.insertNode(tableRIGHT2,node2.id);
                     queue2.push(tree2.search_data(tableRIGHT2));
                 }
