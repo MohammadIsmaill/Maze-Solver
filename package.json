@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node app",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild":"webpack --mode=production",
-    "build":"webpack --mode=production",
-    "watch":"webpack --mode=development --watch",
-    "dev":"webpack-dev-server --mode=production --host 0.0.0.0"
+    "heroku-postbuild": "webpack --mode=production",
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch",
+    "dev": "webpack-dev-server --mode=production --host 0.0.0.0"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "express": "^4.18.1",
     "webpack-dev-server": "^4.8.1"
   }
 }
